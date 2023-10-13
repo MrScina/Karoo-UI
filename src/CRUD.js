@@ -23,11 +23,11 @@ const CRUD=()=>{
 
       const handleEditActiveChange=(e)=>{
            if(e.target.checked){
-           isEditActive(1);
+            setEditisActive(1);
            }
 
         else{
-       isEditActive(0);
+          setEditisActive(0);
           }
     
       }
@@ -44,6 +44,7 @@ const CRUD=()=>{
     const [editname, setEditname]=useState('');
     const [editAge, setEditAge]=useState('');
     const [isEditActive, setEditisActive]=useState(0);
+  
 
     //const empdata=[
      //   {
@@ -102,18 +103,19 @@ const baseUrl='https://localhost:7006/api/Employee';
 
      }
 const handleDelete=(id)=>{
-  //alert(id);
-   // if(window.confirm("are you sure you want to delete this employee")==true){
+
+ 
+   if(window.confirm("are you sure you want to delete this employee")==true){
       axios.delete(`https://localhost:7006/api/Employee/${id}`)
       .then((results)=>{
-        alert(results);
+        
         if(results.status=200){
           toast.success('Employee has been succesfully deleted');
           getData();
         }
         
       })
-   // }
+    }
     
 }
 
@@ -242,9 +244,9 @@ const clear =()=>{
                         value={editAge} onChange={(e)=>setEditAge(e.target.value)}/>
                     </Col>
                     <Col>
-                       <input type="checkbox" 
-                       checked={isEditActive==1 ? true :false}
-                       onChange={(e)=>handleEditActiveChange(e)} value={isEditActive}
+                    <input type="checkbox" 
+                       checked={isEditActive == 1 ? true :false}
+                       onChange={(e)=> handleEditActiveChange(e)} value={isEditActive}
                        />
                        <label>isActive</label>
                     </Col>
